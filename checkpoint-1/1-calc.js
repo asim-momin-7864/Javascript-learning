@@ -217,7 +217,7 @@ for (const idx in splitedOperand) {
   let currentElement = splitedOperand[idx];
 
   // if (isNaN(Number(splitedOperand[idx]))) { -- optimization
-  if (isNaN(currentElement)) {
+  if (isNaN(Number(currentElement))) {
     // bcz 0 is consider as false also , and here !0 it consider true not take valid 0 number
     console.log("Invalid Numbers");
     return;

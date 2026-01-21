@@ -1,0 +1,46 @@
+/* * {
+    padding: 0;
+    margin: 0;
+} */
+
+body {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.button {
+  height: 100px;
+  width: 100px;
+  border: 2px solid black;
+}
+
+#buttonParent {
+  height: 25rem;
+  width: 50rem;
+  /* background-color: aqua; */
+  /* border: 2px solid blueviolet; */
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+}
+
+#green {
+  background-color: green;
+}
+
+#blue {
+  background-color: blue;
+}
+
+#yellow {
+  background-color: yellow;
+}
+
+#pink {
+  background-color: pink;
+}

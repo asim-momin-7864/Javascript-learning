@@ -1,0 +1,16 @@
+
+body{
+    position: relative;
+    background-color: bisque;
+    height: 30rem;
+    width: 30rem;
+    border: 1px solid black;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    padding-left: 2rem;
+
+}
+
+

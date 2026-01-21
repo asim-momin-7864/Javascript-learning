@@ -1,0 +1,13 @@
+
+#form {
+    position: relative;
+    background-color: pink;
+    height: 30rem;
+    width: 20rem;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    row-gap: 10px;
+}
+
+

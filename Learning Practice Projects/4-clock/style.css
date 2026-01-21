@@ -1,0 +1,27 @@
+
+body{
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: #212121;
+    color: white;
+}
+
+
+#clock {
+    position: relative;
+    height: 5rem;
+    width: 10rem;
+    border-radius: 10px;
+    background-color: rgb(239, 207, 24);
+    margin-top: 5rem;
+    color: black;
+    font-weight: 600;
+    font-size: 1.5rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+

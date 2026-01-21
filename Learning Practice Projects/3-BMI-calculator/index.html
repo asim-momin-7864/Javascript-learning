@@ -7,18 +7,25 @@
     <title>BMI Calculator</title>
   </head>
   <body>
-    <h1>BMI Calculator</h1>
 
-    <form action="POST" id="form">
-      <label for="height">Height (cm) :</label>
-      <input type="text" name="height" id="height" />
-      <label for="weight">Weight (kg) :</label>
-      <input type="text" name="weight" id="weight" />
-      <br>
-      <button type="submit" id="submit">Calculate</button>
-      <h1>Result</h1>
-      <h4 id="result" ></h4>
-    </form>
+    <div class="container">
+      <h1>BMI Calculator</h1>
+
+      <form id="form">
+        <label for="height">Height (cm)</label>
+        <input type="text" name="height" id="height" placeholder="Enter height" />
+
+        <label for="weight">Weight (kg)</label>
+        <input type="text" name="weight" id="weight" placeholder="Enter weight" />
+
+        <button type="submit" id="submit">Calculate</button>
+
+        <div class="result-box">
+          <h3>Result</h3>
+          <p id="result"></p>
+        </div>
+      </form>
+    </div>
 
     <script src="logic.js"></script>
   </body>

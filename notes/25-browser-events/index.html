@@ -83,7 +83,7 @@
         false,
       );
 
-/*
+      /*
         LEARN AND EXPLORE ABOUT IT
 
         Browser Events
@@ -103,61 +103,87 @@
 
 */
 
-/*
+      /*
          #3rd Parameter - Propagation Direction (track elements / apply that evenet effects)
          - false -> Bubbling Up (Event Propagate from lower level to higher level elements )
          - true -> Event Capturing Mode (Event Propagate from higher level to lower level elements )
 
 */
 
-// EXAMPLE #1 - false (Bubbling Up)
+      // EXAMPLE #1 - false (Bubbling Up)
 
-// TASK is we are applying event on UL and again another event on "flowers" LI 
-// so if we click on any other LI first UL event will fire
-// but if we click on "flowers" LI then which event should be execute first ?  which direction lower element first or higher element first
-// in this kind cases we need to define Execution Propagation direction by 3rd parameter
+      // TASK is we are applying event on UL and again another event on "flowers" LI
+      // so if we click on any other LI first UL event will fire
+      // but if we click on "flowers" LI then which event should be execute first ?  which direction lower element first or higher element first
+      // in this kind cases we need to define Execution Propagation direction by 3rd parameter
 
-document.getElementById("photo-list").addEventListener("click", (e) => {
-    console.log("click on UL : Higher element");
-}, false);
+      document.getElementById("photo-list").addEventListener(
+        "click",
+        (e) => {
+          console.log("click on UL : Higher element");
+        },
+        false,
+      );
 
-document.getElementById("flowers").addEventListener("click", (e) => {
-    console.log("click on LI : Lower element");
+      document.getElementById("flowers").addEventListener(
+        "click",
+        (e) => {
+          console.log("click on LI : Lower element");
 
-    // Stop Propagation
-    e.stopPropagation(); //(only this event will execute) => index.html:125 click on LI : Lower element 
+          // Stop Propagation
+          e.stopPropagation(); //(only this event will execute) => index.html:125 click on LI : Lower element
+        },
+        false,
+      );
 
-}, false);
-
-// by false - lower element will fire first / execute and execution propagation go to higher element   
-/* o/p => 
+      // by false - lower element will fire first / execute and execution propagation go to higher element
+      /* o/p => 
 
 index.html:125 click on LI : Lower element
 index.html:121 click on UL : Higher element
 
 */
 
-// EXAMPLE #2 - true (Capture Mode)
+      // EXAMPLE #2 - true (Capture Mode)
 
-document.getElementById("photo-list").addEventListener("click", (e) => {
-    console.log("click on UL : Higher element");
-}, true);
+      document.getElementById("photo-list").addEventListener(
+        "click",
+        (e) => {
+          console.log("click on UL : Higher element");
+        },
+        true,
+      );
 
-document.getElementById("flowers").addEventListener("click", (e) => {
-    console.log("click on LI : Lower element");
-}, true);
+      document.getElementById("flowers").addEventListener(
+        "click",
+        (e) => {
+          console.log("click on LI : Lower element");
+        },
+        true,
+      );
 
-// by true - higher element will fire first / execute and execution propagation go to lower element
+      // by true - higher element will fire first / execute and execution propagation go to lower element
 
-/* o/p => 
+      /* o/p => 
 
 index.html:139 click on UL : Higher element
 index.html:143 click on LI : Lower element
 
 */
 
+      // EXAMPLE #3
 
-// ---------------------------------------------------------------
+      // preventDefault()
+
+      document
+        .getElementById("link-google")
+        .addEventListener("click", function (e) {
+          e.preventDefault();
+          e.stopPropagation();
+          console.log("Link is Clickend but we prevent its behaviour");
+        });
+
+      // ---------------------------------------------------------------
       // Other Old Approches
       // attachEvent() - use in internet Explorer
       // jQuery - onEventListner()

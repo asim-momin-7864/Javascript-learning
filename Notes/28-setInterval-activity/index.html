@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <h1>setInterval</h1>
+    <h1>StopWatch</h1>
+    <h1
+      style="
+        color: yellow;
+        background-color: black;
+        border-radius: 10px;
+        width: 20rem;
+      "
+      id="clock"
+    >
+      Time :- 00:00:00 PM
+    </h1>
+
+    <button id="start-btn">Start</button>
+    <button id="stop-btn">Stop</button>
+    <script>
+      let clock = document.getElementById("clock");
+      let startBtn = document.getElementById("start-btn");
+      let stopBtn = document.getElementById("stop-btn");
+
+      let updateTime;
+
+      startBtn.addEventListener("click", (e) => {
+        updateTime = setInterval(() => {
+          let date = new Date();
+          clock.innerText = `Time :- ${date.toLocaleTimeString()}`;
+        }, 1000);
+
+        return updateTime;
+      });
+
+      stopBtn.addEventListener("click", (e) => {
+        clearInterval(updateTime);
+      });
+
+
+      // setInterval 3rd argument
+      let sayHello = (name) => {
+        console.log(`Hello! ${name}`);
+      };
+
+      setInterval(sayHello, 1000, "Hero"); // at 3rd argument we can pass values for its inner Handler / callback function argument
+      // like sayHello needed name argument  
+    </script>
+  </body>
+</html>

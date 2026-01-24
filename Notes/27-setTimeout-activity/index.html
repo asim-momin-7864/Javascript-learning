@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <h1>setTimeout</h1>
+    <h1
+      id="ad-site"
+      style="background-color: rgb(237, 158, 237); border-radius: 16px"
+    ></h1>
+    <button id="stop-btn">Stop</button>
+
+    <script>
+      // seTimeout
+      let showAdv = setTimeout(() => {
+        document.getElementById("ad-site").innerText =
+          "Unlock the future in your hand 📱—Snap, scroll, and slay the day! ✨📸🔥";
+      }, 2000);
+
+      document.getElementById("stop-btn").addEventListener("click", (e) => {
+        clearTimeout(showAdv);
+        console.log("Adv is stopped");
+      });
+    </script>
+  </body>
+</html>

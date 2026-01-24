@@ -1,0 +1,10 @@
+
+# How does javascript execute code + call stack
+- memory creation context
+- execution context
+- call stack
+- execution thread
+
+# all these are important concpets asked in interviews
+
+# watch this video :-  https://www.youtube.com/watch?v=ByhtOgF6uYM&list=PLu71SKxNbfoBuX3f4EOACle2y-tRC5Q37&index=25

@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      body {
+        background-color: rgb(240, 248, 255);
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Color Generator</h1>
+
+    <button id="start-btn">Start</button>
+    <button id="stop-btn">Stop</button>
+
+    <script>
+      let body = document.querySelector("body");
+      let startBtn = document.getElementById("start-btn");
+      let stopBtn = document.getElementById("stop-btn");
+      let changeColorInterval;
+
+      function updateBackgroudColor() {
+        let randomN1 = Math.random() * 255;
+        let randomN2 = Math.random() * 255;
+        let randomN3 = Math.random() * 255;
+
+        body.style.backgroundColor = `rgb(${randomN1},${randomN2},${randomN3})`;
+      }
+
+      startBtn.addEventListener("click", (e) => {
+        console.log(updateBackgroudColor);
+
+        // Solution Step #2 - check if IntervalID is not null (not stopped) then dont assign new Intervals,
+        // bcz that cause issue, we dont get IntervalID of first setInterval
+        if (!changeColorInterval) {
+          changeColorInterval = setInterval(updateBackgroudColor, 1000);
+          return changeColorInterval;
+        }
+      });
+
+      stopBtn.addEventListener("click", (e) => {
+        clearInterval(changeColorInterval);
+        console.log("Interval is Stopped");
+
+        // Solution Step #1
+        changeColorInterval = null;
+      });
+
+      // BUG!!
+      //! This code is working but there is a small problem
+      //! when we click start button double (double start) --> then stop button wont work
+    </script>
+  </body>
+</html>

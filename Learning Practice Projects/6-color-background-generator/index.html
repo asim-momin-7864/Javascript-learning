@@ -5,16 +5,65 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
     <style>
+      * {
+        box-sizing: border-box;
+        font-family: Arial, sans-serif;
+      }
+
       body {
+        min-height: 100vh;
+        margin: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
         background-color: rgb(240, 248, 255);
+        column-gap: 5rem;
+      }
+
+      .box {
+        text-align: center;
+        background-color: white;
+        padding: 30px 40px;
+        border-radius: 8px;
+      }
+
+      h1 {
+        margin-bottom: 25px;
+        color: #333;
+      }
+
+      .buttons {
+        display: flex;
+        gap: 15px;
+        justify-content: center;
+      }
+
+      button {
+        padding: 10px 20px;
+        font-size: 16px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+      }
+
+      #start-btn {
+        background-color: #4caf50;
+        color: white;
+      }
+
+      #stop-btn {
+        background-color: #e74c3c;
+        color: white;
       }
     </style>
   </head>
   <body>
     <h1>Color Generator</h1>
 
-    <button id="start-btn">Start</button>
-    <button id="stop-btn">Stop</button>
+    <div>
+      <button id="start-btn">Start</button>
+      <button id="stop-btn">Stop</button>
+    </div>
 
     <script>
       let body = document.querySelector("body");

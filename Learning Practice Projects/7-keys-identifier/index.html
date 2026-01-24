@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Keyboard Key Identifier</title>
+
+    <style>
+      * {
+        box-sizing: border-box;
+        font-family: Arial, sans-serif;
+      }
+
+      body {
+        min-height: 100vh;
+        margin: 0;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        background-color: #f4f6f8;
+        padding-top: 40px;
+      }
+
+      h1 {
+        margin-bottom: 20px;
+        color: #333;
+      }
+
+      table {
+        border-collapse: collapse;
+        width: 400px;
+        background-color: white;
+      }
+
+      thead {
+        background-color: #e3e8ee;
+      }
+
+      th {
+        padding: 10px;
+        border: 1px solid #aaa;
+        font-size: 15px;
+      }
+
+      td {
+        padding: 8px;
+        border: 1px solid #ccc;
+        text-align: center;
+        font-size: 14px;
+      }
+
+      tbody tr:nth-child(even) {
+        background-color: #f9f9f9;
+      }
+    </style>
+  </head>
+
+  <body>
+    <h1>Keyboard Key Identifier</h1>
+
+    <p>Press any key on your keyboard</p>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Key</th>
+          <th>Code</th>
+          <th>charCode</th>
+        </tr>
+      </thead>
+
+      <tbody id="tbody"></tbody>
+    </table>
+
+    <script>
+      document.addEventListener("keypress", (e) => {
+        let newRow = document.createElement("tr");
+        newRow.innerHTML = `
+          <td>${e.key}</td>
+          <td>${e.code}</td>
+          <td>${e.charCode}</td>
+        `;
+        document.getElementById("tbody").appendChild(newRow);
+      });
+    </script>
+  </body>
+</html>

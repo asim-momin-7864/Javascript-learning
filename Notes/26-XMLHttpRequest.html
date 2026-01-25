@@ -1,0 +1,221 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>XMLHttpRequest Practice</title>
+
+    <style>
+      * {
+        box-sizing: border-box;
+        font-family: Arial, sans-serif;
+      }
+
+      body {
+        margin: 0;
+        padding: 30px;
+        background-color: #f4f7f9;
+        color: #333;
+      }
+
+      h1 {
+        margin-bottom: 10px;
+      }
+
+      p {
+        max-width: 700px;
+        line-height: 1.5;
+        color: #444;
+      }
+
+      hr {
+        margin: 30px 0;
+      }
+
+      /* --------- TABLE STYLING --------- */
+
+      table {
+        border-collapse: collapse;
+        width: 600px;
+        margin-top: 15px;
+        background-color: white;
+      }
+
+      th {
+        background-color: #e8edf3;
+        padding: 10px;
+        border: 1px solid #bbb;
+        text-align: left;
+      }
+
+      td {
+        padding: 8px 10px;
+        border: 1px solid #ccc;
+        font-size: 14px;
+      }
+
+      /* --------- CARD STYLING --------- */
+
+      #card {
+        margin-top: 20px;
+        width: 600px;
+        background-color: white;
+        padding: 20px;
+        border-radius: 8px;
+        border: 1px solid green;
+      }
+
+      #gitHubProfile {
+        width: 150px;
+        height: 150px;
+        border-radius: 50%;
+        object-fit: cover;
+        display: block;
+        margin: 0 auto 15px auto;
+      }
+
+      #gitHubName {
+        text-align: center;
+        margin-bottom: 10px;
+      }
+
+      #card p {
+        margin: 6px 0;
+        font-size: 14px;
+        color: #444;
+      }
+
+      #card h5 {
+        margin-top: 15px;
+        margin-bottom: 5px;
+      }
+    </style>
+  </head>
+
+  <body>
+    <h1>XMLHttpRequest</h1>
+    <hr />
+    <p>
+      XMLHttpRequest (XHR) objects are used to interact with servers. You can
+      retrieve data from a URL without having to do a full page refresh. This
+      enables a Web page to update just part of a page without disrupting what
+      the user is doing.
+    </p>
+    <p>
+      This is used before <b>fetch()</b>. Now mostly available on legacy
+      codebases
+    </p>
+
+    <!-- Status Table -->
+    <table>
+      <thead>
+        <tr>
+          <th>Value</th>
+          <th>State</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>0</td>
+          <td>UNSENT</td>
+          <td>Client has been created. open() not called yet.</td>
+        </tr>
+        <tr>
+          <td>1</td>
+          <td>OPENED</td>
+          <td>open() has been called.</td>
+        </tr>
+        <tr>
+          <td>2</td>
+          <td>HEADERS_RECEIVED</td>
+          <td>send() has been called, and headers and status are available.</td>
+        </tr>
+        <tr>
+          <td>3</td>
+          <td>LOADING</td>
+          <td>Downloading; responseText holds partial data.</td>
+        </tr>
+        <tr>
+          <td>4</td>
+          <td>DONE</td>
+          <td>The operation is complete.</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <hr />
+    <h1>Mini Activity</h1>
+
+    <!-- Minimal Card -->
+    <div id="card">
+      <img src="" alt="" id="gitHubProfile" />
+      <h4 id="gitHubName"></h4>
+      <p id="gitHubFollowers">Followers : 190</p>
+      <p id="gitHubFollowings">Followings : 23</p>
+      <h5>Bio</h5>
+      <p id="gitHubBio">
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Beatae animi
+        blanditiis eveniet exercitationem reiciendis a error, vel hic alias
+        fugiat, id omnis doloremque voluptatum quo nostrum et, excepturi quia
+        ipsam!
+      </p>
+      <p id="gitHubLocation">Location :</p>
+      <p id="gitHubPublicRepos">Public Repos :</p>
+    </div>
+
+    <script>
+      //DOM
+      let profileImage = document.getElementById("gitHubProfile");
+      let name = document.getElementById("gitHubName");
+      let followers = document.getElementById("gitHubFollowers");
+      let followings = document.getElementById("gitHubFollowings");
+      let bio = document.getElementById("gitHubBio");
+      let myLocation = document.getElementById("gitHubLocation");
+      let PublicRepos = document.getElementById("gitHubPublicRepos");
+
+      // XMLHttpRequest
+      const myURL = "https://api.github.com/users/asim-momin-7864";
+
+      // we use this kind syntax to make fresh object from class (methods almost are class's)
+      const XML = new XMLHttpRequest();
+      console.log("XML : ", XML);
+
+      console.log(XML.readyState); // use to see request state 0 /1 /2/ 3/ 4
+
+      XML.open("GET", myURL);
+
+      // To continously track state we use
+      // this method take one function (what to do after each time when state changes)
+      XML.onreadystatechange = function () {
+        console.log(XML.readyState);
+
+        // we can do many opeartion basesd on state change
+        if (XML.readyState === 4) {
+          console.log("4	DONE	The operation is complete.");
+
+          // when at 4 state, We get Response from server
+          // how to access that Response
+          console.log(this.responseText); // but we get Response in JSON
+          console.log(typeof this.responseText); // => string
+          // console.log(this.responseText.followers); // JSON data cannot be access as JS
+
+          // we need to make it into JS by parsing
+          let jsResponse = JSON.parse(this.responseText);
+          console.log(jsResponse.followers); // => 54228
+
+          profileImage.setAttribute("src", jsResponse.avatar_url);
+          // profileImage.src = jsResponse.avatar_url; // also worked!
+          name.innerText = jsResponse.name;
+          followers.innerText = `Followers : ${jsResponse.followers}`;
+          followings.innerText = `Following : ${jsResponse.following}`;
+          bio.innerText = jsResponse.bio;
+          myLocation.innerText = `Location : ${jsResponse.location}`;
+          PublicRepos.innerText = `Public Repos : ${jsResponse.public_repos}`;
+        }
+      };
+
+      XML.send();
+    </script>
+  </body>
+</html>

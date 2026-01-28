@@ -139,11 +139,3 @@ async function consumePromiseFour2() {
 consumePromiseFour2();
 
 
-
-//TODO one activity with dummy users data
-
-
-
-
-
-//TODO Search about Promise, fetch, chaining, async-await, try-catch

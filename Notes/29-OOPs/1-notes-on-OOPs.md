@@ -1,7 +1,11 @@
 # Notes on OOPs in js and IMP topics to Learn
 
 ## Video Link
+
 [OOPs in js by Hitesh Choudhary](https://youtu.be/pN-Qmv4zBcI?si=87v3wKme9NLbp-Vm)
+
+[Magic of Prototype in javascript](https://youtu.be/uMI5cNeHTOc?si=A_d5jIeGfiUyUP13)
+
 ---
 
 ## What is OOPs ?
@@ -53,6 +57,8 @@ These styles are not mutually exclusive; many modern languages (like Python, Jav
 
 Object literal means, literally object. just saying word  
 literal means literally
+
+> we are discussing below 4 concepts in detailed, in futher notes
 
 - Constructor Function
 - Prototypes

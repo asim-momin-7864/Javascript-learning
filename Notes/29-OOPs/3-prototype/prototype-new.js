@@ -90,7 +90,7 @@ someElement.prototype -->  {  }
 
 function dishAndPrice(name, price) {
   this.name = name;
-  this.price = name;
+  this.price = price;
   console.log(` Dish added into menu `);
 }
 

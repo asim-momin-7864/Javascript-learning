@@ -54,6 +54,25 @@ function displayUsers(username, age, email) {
 
   return this; // also if we are using "new" keyword and creating instances for this function we dont need write "return this" constructor automatically do this
   // but explicitly writting it is good practice
+
+  /*  -------------------------------------------------------------------------
+* EXPLANATION: The "return this" behavior
+
+ * - In a normal function, we write "return this" to get the object back.
+ * - BUT, when we use the "new" keyword, JavaScript is smart! 
+ The "new" keyword AUTOMATICALLY (implicitly) returns "this" (the new object) for us.
+
+ - So, even if you don't write "return this", it will still work perfectly with "new".
+ Writing it explicitly is just like a "safety backup" or good practice, but not strictly needed.
+
+ ! SUPER IMP POINT FOR INTERVIEWS:
+ If your function returns a "Primitive" (like a string, number, or true/false), 
+ the "new" keyword IGNORES it and still returns your object.
+
+ BUT, if your function returns a "Different Object" (like {name: "luffy"}), 
+ then "new" will throw away your intended object and return that different object instead!
+ -------------------------------------------------------------------------
+*/
 }
 
 // userOne created
@@ -67,8 +86,6 @@ console.log(" userOne --> ", userOne); /*
     username: 'Hamada',
     age: 12,
     email: 'hamada@g.com'
-
- - it give use whole function with detaile properties also (that isjust due to return this ), but working 
 
  ! --> when we create userTwo with same function insatnce , this time it wont working 
  ! userOne is giving output --> 

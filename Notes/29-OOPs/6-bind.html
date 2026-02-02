@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Bind - By React v1 Problem</title>
+  </head>
+  <body>
+    <h1>Learning .bind() method ~ By React v0, v1 Problem</h1>
+
+    <button id="clickme-btn">Click Me</button>
+
+    <script>
+      // Bind - this method is used in old codebases, and React v0 or v1 codes, now we dont need to use .bind() method
+
+      // React v1 problem
+      //  understand this problem by video :  https://youtu.be/75dMiOY_4ac?si=Wr1Zau02A-2gJjed
+
+      // We understand problem by code example
+
+      // mimiking React v0..
+      class React {
+        constructor() {
+          this.library = "React"; // hardcoded value
+          this.server = "https://localhost:3000";
+
+          // our requirements
+          // - we take refernce of our button
+          // - after click some task will perform e.g. form submit
+
+          // code without .bind
+          //   document
+          //     .querySelector("#clickme-btn")
+          //     .addEventListener("click", this.handleClick); // to use methods and arguments in class we use this in front of them also to get them from context
+          // }
+
+          // code with .bind
+          document
+            .querySelector("#clickme-btn")
+            .addEventListener("click", this.handleClick.bind(this)); // to use methods and arguments in class we use this in front of them also to get them from context
+        }
+
+        // method
+        handleClick() {
+          console.log("button Clicked");
+
+          // we know methods have access to context (arguments)
+          console.log(this);
+          console.log(this.server);
+
+          /*
+          
+          CODE :  .addEventListener("click", this.handleClick);
+
+          OUTPUT (when we dont use .bind) ->
+            button Clicked
+            <button id=​"clickme-btn">​Click Me​</button>​
+            undefined
+
+            PROBLEM : 
+            we are not getting full context "this" getting partial only, 
+            PROOF : we have buttons refernce in context but not have arguments. 
+
+            unlike PROBLEM we phased in .call() method chapter, 
+            there we get any context 
+
+            we are getting this.handleClick in context (means our button)
+            but not getting this.library = "React";  this.serve = "https://localhost:3000";
+            so we need to bind them with getting context
+
+            we are not overwitting, just attaching along with them
+
+
+            SOLUTION :
+            CODE : this.handleClick.bind(this)
+
+            OUTPUT ->
+
+            button Clicked
+            React {library: 'React', server: 'https://localhost:3000'}
+            https://localhost:3000
+
+
+
+
+
+
+
+
+          */
+        }
+      }
+
+      const app = new React();
+    </script>
+  </body>
+</html>

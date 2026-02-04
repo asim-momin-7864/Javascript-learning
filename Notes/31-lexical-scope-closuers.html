@@ -1,0 +1,121 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <h1>Lexical Scoping</h1>
+    <h1>Closure</h1>
+
+    <!----------------------------------------------------------------------------------->
+    <h1>Real-life example of</h1>
+    <button id="pink">Pink</button>
+    <button id="green">Green</button>
+
+    <!----------------------------------------------------------------------------------->
+
+    <!-- Lexical Scoping -->
+    <script>
+      //Lexical Scope: accessible code, boundries that define which code is accessible and which is not
+      // child can access parents lexical scope, but parent and siblings cannot access childs scope
+
+      //Example to see Lexical Scope
+
+      let name = "Goku"; // var in global scope / parents scope
+
+      function sayName() {
+        let animeName = "Dragon Ball Z"; // var in that function
+        console.log(`${name} is strongest character in ${animeName}`);
+      }
+
+      // execute
+      sayName(); // --> Goku is strongest character in Dragon Ball Z
+
+      // Parent cannot access childs scope
+      console.log(`Tell the anime name ${animeName}`); // --> ERROR:  Uncaught ReferenceError: animeName is not defined
+    </script>
+
+    <!-- Closure -->
+    <script>
+      //Closure: When we return function its whole lexical scope (means parent) also return with it
+
+      // Example
+      function outer() {
+        // suppose this func creats username
+        let username = "@aoi_san";
+
+        // inner func
+        function inner() {
+          // suppose this func display username
+          console.log(username);
+        }
+
+        // returning inner func reference
+        return inner;
+      }
+
+      // we assign inner func into "myFunc" var
+      const myFunc = outer();
+
+      // now, check is inner func will work or gets crash due to it does not have username var ?
+      // bcz we only returned inner func reference, we did not return username also
+
+      myFunc(); // --> @aoi_san
+    </script>
+
+    <!-- Real-life example of closure  -->
+    <script>
+      // Short Task: Simple way for few amount of
+      document.getElementById("pink").onclick = function () {
+        document.body.style.backgroundColor = "pink";
+      };
+
+      document.getElementById("green").onclick = function () {
+        document.body.style.backgroundColor = "green";
+      };
+
+      //--------------------------------------------------------------------------------------------
+
+      //BUT if we have 500 buttons then how we will do
+
+      // generic function that will do color changing task
+
+      // function handleClick(color){
+      //    document.body.style.backgroundColor = `${color}`
+      // }
+
+      // buttons are different, we can take list of all buttons also ... that is not main part
+
+      //--------------------------------------------------------------------------------------------
+
+      //ISSUES
+
+      //CASE 1:
+      //  document.getElementById("pink").onclick = handleClick
+      // - we cannot just pass reference, because we have to pass argument also "color"
+
+      //  document.getElementById("pink").onclick = handleClick("pink")
+      // - BUT it executing automatically, dont wait to click
+
+      //--------------------------------------------------------------------------------------------
+
+      //CASE 2:
+      // when we are assigning func to onclick it is executing immidatly
+      function handleClick(color) {
+        // so lets make function inside and return its reference
+        return function () {
+          // so where closure is coming ?
+          // we are returning this inner function, but "color" as argument is taking by handleClick function and we never define color argument in inner func
+          // and our func is chaning color, means it have access to whole lexical scope (parent also)
+
+          document.body.style.backgroundColor = `${color}`;
+        };
+      }
+
+      document.getElementById("pink").onclick = handleClick("pink");
+      document.getElementById("green").onclick = handleClick("green");
+    </script>
+  </body>
+</html>

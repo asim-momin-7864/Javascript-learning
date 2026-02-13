@@ -37,18 +37,18 @@ function createRegistry() {
     type: "weight",
   };
 
-  reg.C = {
-    name: "C",
+  reg.c = {
+    name: "c",
     type: "temp",
   };
 
-  reg.F = {
-    name: "F",
+  reg.f = {
+    name: "f",
     type: "temp",
   };
 
-  reg.K = {
-    name: "K",
+  reg.k = {
+    name: "k",
     type: "temp",
   };
 
@@ -77,20 +77,16 @@ function convertUnits(value, fromUnit, toUnit) {
   }
 
   //TODO Input sanitization
-  let value = Number(value);
-  let fromUnit = String(fromUnit);
-  let toUnit = String(toUnit);
+  value = Number(value);
+  fromUnit = String(fromUnit);
+  toUnit = String(toUnit);
 
     //TODO lower case and upper case
   //Case 2 : lower case and upper case fro better matching
 
-  if (fromUnitObject.type == "temp") {
-    fromUnit = fromUnit.toUpperCase();
-    toUnit = toUnit.toUpperCase();
-  } else {
     fromUnit = fromUnit.toLowerCase();
     toUnit = toUnit.toLowerCase();
-  }
+
 
 
   //TODO Edge cases
@@ -165,24 +161,24 @@ function convertUnits(value, fromUnit, toUnit) {
 
     //switch
     switch (checkPair) {
-      case "C-F":
+      case "c-f":
         result = value * (9 / 5) + 32;
         break;
-      case "C-K":
+      case "c-k":
         result = value + 273.15;
         break;
-      case "F-C":
+      case "f-c":
         result = (value - 32) * (5 / 9);
 
         break;
-      case "F-K":
+      case "f-k":
         result = (value - 32) * (5 / 9) + 273.15;
 
         break;
-      case "K-C":
+      case "k-c":
         result = value - 273.15;
         break;
-      case "K-F":
+      case "k-f":
         result = (value - 273.15) * (9 / 5) + 32;
         break;
 
@@ -199,3 +195,10 @@ function convertUnits(value, fromUnit, toUnit) {
 convertUnits(10, "km", "m");
 convertUnits(1, "kg", "lb");
 convertUnits(0, "C", "F");
+convertUnits(0, "kg", "g");
+convertUnits(50, "C", "kg");
+convertUnits(0, "C", " ");
+convertUnits(66, "m", "m");
+convertUnits(66, "GB", "MB");
+
+

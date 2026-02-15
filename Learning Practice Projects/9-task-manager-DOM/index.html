@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <h1>TODOish</h1>
+    <hr />
+    <button type="button" id="reload">Reload</button>
+    <button type="button" id="save">Save</button>
+    <br />
+    <br />
+    <hr />
+    <form id="form">
+      <label for="taskInput">Enter Task Here : </label>
+      <input type="text" name="taskInput" id="taskInput" />
+
+      <br />
+      <br />
+      <button type="submit">Add Task</button>
+    </form>
+    <hr />
+    <br />
+    <br />
+    <ul id="allTasks">
+      <li id="1">
+        <p class="p-task checked">Make coffee in evening</p>
+        <button class="check-btn">Check</button>
+        <button class="edit-btn">Edit</button>
+        <button class="delete-btn">Delete</button>
+      </li>
+    </ul>
+
+    <script src="logic.js"></script>
+  </body>
+</html>

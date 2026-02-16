@@ -21,32 +21,7 @@ deleteTask() does not save
 //------------------------------------------------------------------------------------------------------------------------
 
 //* quick storage
-let tasks = [
-  {
-    id: crypto.randomUUID(),
-    title: "Learn JS",
-    isDone: false,
-    createdAt: Date.now(),
-  },
-  {
-    id: crypto.randomUUID(),
-    title: "Go to school",
-    isDone: false,
-    createdAt: Date.now(),
-  },
-  {
-    id: crypto.randomUUID(),
-    title: "Complete Paper",
-    isDone: false,
-    createdAt: Date.now(),
-  },
-  {
-    id: crypto.randomUUID(),
-    title: "GYM new workout resiment",
-    isDone: false,
-    createdAt: Date.now(),
-  },
-];
+let tasks = [];
 
 //* Save Local Storage -- local storage
 function saveTasksLocal() {
@@ -74,6 +49,8 @@ function loadTasksLocal() {
 
   tasks = [];
   tasks = JSON.parse(resultArr);
+
+  fetchAllTasks();
 }
 
 //* addTask()
@@ -370,6 +347,7 @@ form.addEventListener("submit", (e) => {
     document.getElementById("taskInput").value = "";
   } else {
     addTask(title);
+    document.getElementById("taskInput").value = "";
   }
 });
 

@@ -16,7 +16,7 @@ editTask() does not save
 deleteTask() does not save
 
 */
-//TODO Double Variable Naming Confusion -- Some names don't reflect actual meaning clearly.
+// Double Variable Naming Confusion -- Some names don't reflect actual meaning clearly.
 
 //------------------------------------------------------------------------------------------------------------------------
 
@@ -79,7 +79,7 @@ function loadTasksLocal() {
 //* addTask()
 function addTask(title) {
   // input sanitization()
-  //TODO weak verification -- but okey in practice project
+  // weak verification -- but okey in practice project
   title = String(title);
   console.log(title);
 
@@ -138,6 +138,8 @@ function toggleTask(id) {
 }
 
 //* editTask()
+// we can tune more these core manipulation fucntions according to our fucntion for buttons based on input / data we can get in there
+// for example sending, taskinfo we are alredy using get IdxAndTask() in both
 function editTask(id, newTitle) {
   // input sanitization()
   newTitle = String(newTitle);
@@ -192,7 +194,7 @@ function fetchAllTasks() {
     pTask.classList.add("p-task");
     pTask.innerText = task.title;
 
-/*
+    /*
 * This is happening thats why we need to add checked in new DOM
 
 You toggle class manually ✅
@@ -207,9 +209,9 @@ New DOM created without .checked class ❌
 
 */
 
-    if (task.isDone) { 
+    if (task.isDone) {
       // true
-      pTask.classList.add("checked")
+      pTask.classList.add("checked");
     }
 
     let checkBtn = document.createElement("button");
@@ -270,11 +272,11 @@ function checkTaskBtn(e) {
   // let pTask = e.target.closest(".p-task")
   // pTask.classList.toggle("checked")
 
-  // p is static wont change also we can we this element area only 
+  // p is static wont change also we can we this element area only
   console.log(e.target);
   let li = e.target.parentElement;
   let pTask = li.querySelector(".p-task");
-  pTask.classList.toggle("checked")
+  pTask.classList.toggle("checked");
 
   // console.log(e.target.parentElement.id);
   toggleTask(e.target.parentElement.id);
@@ -284,10 +286,92 @@ function checkTaskBtn(e) {
 //! let allDeleteBtns = document.querySelectorAll(".delete-btn");
 
 function deleteTaskBtn(e) {
-  //TODO delete whole LI
+  //delete whole LI
   deleteTask(e.target.parentElement.id); // remove from tasks
   console.log(e.target.parentElement.remove()); // remove LI
 }
+
+//! Event Listener Overlapping Problem
+
+// //* edit task
+// function editTaskBtn(e) {
+//    find that task
+//   console.log(e.target.parentElement);
+//   let id = e.target.parentElement.id;
+//   let taskInfo = getIdxAndTask(id);
+
+//    take old title from it
+//   let oldTitle = taskInfo?.task?.title;
+//   let idx = taskInfo?.idx;
+
+//    and show it into Form
+//   document.getElementById("taskInput").value = oldTitle;
+
+//    take new title entered into from
+//   form.addEventListener("submit", (e) => {
+//     e.preventDefault();
+
+//     let fd = new FormData(e.currentTarget);
+
+//     let newTitle = fd.get("taskInput");
+
+//     editTask(id, newTitle);
+
+//     document.getElementById("taskInput").value = "";
+//   });
+// }
+
+// //* add new task
+// form.addEventListener("submit", (e) => {
+
+//   e.preventDefault();
+
+//   console.log(e.target);
+//   console.log(e.currentTarget);
+//   console.log(e.target.parentElement);
+
+//   let fd = new FormData(e.currentTarget);
+//   let taskTitle = fd.get("taskInput").trim();
+//   addTask(taskTitle);
+
+//   // e.currentTarget.reset(); // to clear
+//   // FormData.set("taskInput", "")
+
+//   document.getElementById("taskInput").value = "";
+// });
+
+//* we need to create handle edit and add new task button / forms behavious at same function
+
+let editingTaskId = null;
+
+function editTaskBtn(e) {
+  const li = e.target.closest("li");
+  const id = li.id;
+
+  const taskInfo = getIdxAndTask(id);
+  const oldTitle = taskInfo?.task?.title;
+
+  document.getElementById("taskInput").value = oldTitle;
+
+  editingTaskId = id; // 🔥 switch to edit mode
+}
+
+form.addEventListener("submit", (e) => {
+  e.preventDefault();
+
+  const fd = new FormData(e.currentTarget);
+  const title = fd.get("taskInput").trim();
+
+  if (!title) return;
+
+  if (editingTaskId) {
+    editTask(editingTaskId, title);
+    editingTaskId = null;
+    document.getElementById("taskInput").value = "";
+  } else {
+    addTask(title);
+  }
+});
 
 //* SOLUTION
 
@@ -306,7 +390,7 @@ function deleteTaskBtn(e) {
 //   }
 // );
 
-//TODO write logic with .closest
+//write logic with .closest
 allTasksUl.addEventListener("click", (e) => {
   // for check btn
   let checkBtn = e.target.closest(".check-btn");
@@ -321,18 +405,12 @@ allTasksUl.addEventListener("click", (e) => {
   }
 
   // for edit btn
+  let editBtn = e.target.closest(".edit-btn");
+  if (editBtn) {
+    editTaskBtn(e);
+  }
 });
-
-//* add new task
-form.addEventListener("submit", (e) => {
-  e.preventDefault();
-  let fd = new FormData(e.target);
-  let taskTitle = fd.get("taskInput").trim();
-  addTask(taskTitle);
-});
-
-//TODO edit task
 
 //* extra improvments
-//TODO  use of fragment
+//  use of fragment (optional)
 //TODO  use of dataset-*

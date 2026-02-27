@@ -1,4 +1,4 @@
-# 🏗️ Project Plan: [Project Name]
+# 🏗️ Project Plan: Github User Fetcher
 
 > **Goal:** To learn about External APIs, data-fetching, async-operations, JSON response handling.
 

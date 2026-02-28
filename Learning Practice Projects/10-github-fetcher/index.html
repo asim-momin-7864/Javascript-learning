@@ -4,44 +4,45 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
-    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="style.css">
+    <title>GitHub User Search</title>
 </head>
 
 <body>
-    <div>
+    <div class="container">
         <form id="searchbar-form">
-            <input type="search" name="" id="searchbar" required />
+            <input type="search" name="" id="searchbar" placeholder="Enter GitHub username..." required />
             <button type="submit">Search</button>
         </form>
-        <hr />
+        
         <button id="reset-btn">Reset</button>
         <hr />
-        <div id="loading" style="background-color: #212121">
+
+        <div id="loading" class="hideElement">
             <span class="loader"></span>
+            <p style="margin-top: 15px;">Fetching data...</p>
         </div>
-    </div>
-    <hr />
-    <div id="error-404-div">
-        <img src="./Assets/404-error-found.jpg" alt="" style="height: 10rem" />
-        <br>
-        <h1>Click "Reset Button" and search again !!</h1>
-    </div>
-    <div id="general-error-div">
-        <img src="./Assets/general-error-found.jpg" alt="" style="height: 10rem" />
-        <br>
-        <h1>Click "Reset Button" and search again !!</h1>
-    </div>
-    <div id="result-div" style="background-color: aquamarine">
-        <h1>User Profile</h1>
-        <div>
+
+        <div id="error-404-div" class="hideElement">
+            <img src="./Assets/404-error-found.jpg" alt="Not Found" />
+            <h2>User Not Found</h2>
+            <p>Click the "Reset" button and search again!</p>
+        </div>
+
+        <div id="general-error-div" class="hideElement">
+            <img src="./Assets/general-error-found.jpg" alt="Error" />
+            <h2>Something went wrong</h2>
+            <p>Click the "Reset" button and try again!</p>
+        </div>
+
+        <div id="result-div">
+            <h1>User Profile</h1>
             <ul id="user-profile-ul"></ul>
-        </div>
-        <hr />
-        <h1>User Repos</h1>
-        <div>
-            <ul id="user-repos-ul">
-            </ul>
+            
+            <hr />
+
+            <h1>User Repositories</h1>
+            <ul id="user-repos-ul"></ul>
         </div>
     </div>
 

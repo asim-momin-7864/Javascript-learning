@@ -1,46 +1,215 @@
-.loader {
-  width: 48px;
-  height: 48px;
-  border: 2px solid #fff;
-  border-radius: 50%;
-  display: inline-block;
-  position: relative;
-  box-sizing: border-box;
-  animation: rotation 1s linear infinite;
-}
+     /* --- 1. Base Setup --- */
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f6f8fa;
+            color: #24292f;
+            margin: 0;
+            padding: 30px 20px;
+            line-height: 1.6;
+        }
 
-.loader::after {
-  content: "";
-  box-sizing: border-box;
-  position: absolute;
-  left: 50%;
-  top: 0;
-  background: #ff3d00;
-  width: 3px;
-  height: 24px;
-  transform: translateX(-50%);
-}
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
 
-@keyframes rotation {
-  0% {
-    transform: rotate(0deg);
-  }
+        hr {
+            border: 0;
+            border-top: 1px solid #d0d7de;
+            margin: 25px 0;
+        }
 
-  100% {
-    transform: rotate(360deg);
-  }
-}
+        /* --- 2. Search & Buttons --- */
+        #searchbar-form {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 15px;
+        }
 
-.hideElement {
-  display: none;
-}
+        input[type="search"] {
+            flex-grow: 1;
+            padding: 10px 15px;
+            border: 1px solid #d0d7de;
+            border-radius: 6px;
+            font-size: 1rem;
+        }
 
-p {
-  margin: 0px;
-  margin-bottom: 2px;
-}
+        button {
+            padding: 10px 20px;
+            cursor: pointer;
+            border-radius: 6px;
+            font-size: 1rem;
+            font-weight: 600;
+            border: 1px solid #d0d7de;
+        }
 
-ul {
-  list-style: none;
-  ;
-}
+        button[type="submit"] {
+            background-color: #0969da;
+            color: white;
+            border: none;
+        }
+
+        #reset-btn {
+            width: 100%;
+            background-color: #ffffff;
+            color: #cf222e;
+        }
+
+        /* --- 3. States (Loading & Errors) --- */
+        #loading, #error-404-div, #general-error-div {
+            text-align: center;
+            padding: 40px;
+            background: #ffffff;
+            border: 1px solid #d0d7de;
+            border-radius: 8px;
+            margin-bottom: 20px;
+        }
+
+        #error-404-div img, #general-error-div img {
+            height: 10rem;
+            margin-bottom: 15px;
+            border-radius: 8px;
+        }
+
+        /* --- 4. User Profile Card --- */
+        #result-div h1 {
+            text-align: center;
+            font-size: 1.3rem;
+            color: #57606a;
+            margin-top: 30px;
+            margin-bottom: 15px;
+        }
+
+        #user-profile-ul {
+            background: #ffffff;
+            border: 1px solid #d0d7de;
+            border-radius: 12px;
+            padding: 30px;
+            margin: 0 auto;
+            max-width: 350px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+        }
+
+        #user-profile-ul li {
+            list-style: none;
+            padding: 8px 0;
+            border-bottom: 1px solid #eaecef;
+            font-size: 0.95rem;
+            color: #444;
+        }
+
+        #user-profile-ul li:last-child {
+            border-bottom: none;
+        }
+
+        #user-profile-ul li:first-child {
+            text-align: center;
+            border-bottom: none;
+            padding-bottom: 15px;
+        }
+
+        #user-profile-ul img {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 4px solid #f6f8fa;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+        }
+
+        #user-profile-ul li a {
+            display: block;
+            text-align: center;
+            background-color: #24292f;
+            color: white;
+            text-decoration: none;
+            padding: 8px;
+            border-radius: 6px;
+            margin-top: 10px;
+        }
+
+        /* --- 5. Repo Cards (Stylish & Structured) --- */
+        #user-repos-ul {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 20px;
+            padding: 0;
+        }
+
+        #user-repos-ul li {
+            list-style: none;
+            background: #ffffff;
+            border: 1px solid #d0d7de;
+            border-radius: 8px;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.02);
+        }
+
+        /* Repo Name (Header of the card) */
+        #user-repos-ul li p:first-child {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #0969da;
+            margin: 0 0 10px 0;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #f6f8fa; /* Visual separator */
+        }
+
+        /* Repo Description */
+        #user-repos-ul li p:nth-child(2) {
+            margin: 0 0 15px 0;
+            font-size: 0.9rem;
+            color: #57606a;
+            flex-grow: 1; /* This pushes the stats below to the very bottom */
+        }
+
+        /* Repo Stats Fields (Targeting the 3rd, 4th, and 5th <p> tags) */
+        #user-repos-ul li p:nth-child(3),
+        #user-repos-ul li p:nth-child(4),
+        #user-repos-ul li p:nth-child(5) {
+            margin: 0 0 5px 0;
+            font-size: 0.8rem;
+            color: #24292f;
+            background-color: #f6f8fa; /* Light gray box */
+            padding: 6px 10px;
+            border-radius: 4px;
+            border: 1px solid #eaecef;
+            font-family: ui-monospace, SFMono-Regular, Consolas, monospace; /* Makes it look like structured code data */
+        }
+
+        /* Repo Link (Styled as an action button) */
+        #user-repos-ul li a {
+            margin-top: 15px;
+            display: block;
+            text-align: center;
+            background-color: #ffffff;
+            color: #0969da;
+            border: 1px solid #0969da;
+            padding: 8px;
+            border-radius: 6px;
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 600;
+            transition: all 0.2s;
+        }
+
+        /* Hover effect for the link button */
+        #user-repos-ul li a:hover {
+            background-color: #0969da;
+            color: #ffffff;
+        }
+
+        /* --- Utilities --- */
+        .hideElement { display: none !important; }
+        
+        .loader {
+            width: 48px; height: 48px; border: 3px solid #e1e4e8; border-radius: 50%;
+            display: inline-block; position: relative; animation: rotation 1s linear infinite;
+        }
+        .loader::after {
+            content: ""; position: absolute; left: 50%; top: 0; background: #0969da;
+            width: 3px; height: 24px; transform: translateX(-50%);
+        }
+        @keyframes rotation { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }

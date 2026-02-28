@@ -8,6 +8,7 @@
   box-sizing: border-box;
   animation: rotation 1s linear infinite;
 }
+
 .loader::after {
   content: "";
   box-sizing: border-box;
@@ -24,11 +25,22 @@
   0% {
     transform: rotate(0deg);
   }
+
   100% {
     transform: rotate(360deg);
   }
 }
 
-.hideLoader {
+.hideElement {
   display: none;
+}
+
+p {
+  margin: 0px;
+  margin-bottom: 2px;
+}
+
+ul {
+  list-style: none;
+  ;
 }

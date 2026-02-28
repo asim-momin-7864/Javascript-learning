@@ -1,26 +1,51 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="style.css">
-</head>
-<body>
 
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
     <div>
-        <form id="searchbar-form" >
-           <input type="search" name="" id="searchbar" required  >
-           <button type="submit">Search</button>
+        <form id="searchbar-form">
+            <input type="search" name="" id="searchbar" required />
+            <button type="submit">Search</button>
         </form>
-        <hr>
-        <button id="reset">Reset</button>
-        <hr>
-        <div id="loading" style="background-color: #212121;"  >
-            <span class="loader" ></span>
+        <hr />
+        <button id="reset-btn">Reset</button>
+        <hr />
+        <div id="loading" style="background-color: #212121">
+            <span class="loader"></span>
         </div>
     </div>
-    
+    <hr />
+    <div id="error-404-div">
+        <img src="./Assets/404-error-found.jpg" alt="" style="height: 10rem" />
+        <br>
+        <h1>Click "Reset Button" and search again !!</h1>
+    </div>
+    <div id="general-error-div">
+        <img src="./Assets/general-error-found.jpg" alt="" style="height: 10rem" />
+        <br>
+        <h1>Click "Reset Button" and search again !!</h1>
+    </div>
+    <div id="result-div" style="background-color: aquamarine">
+        <h1>User Profile</h1>
+        <div>
+            <ul id="user-profile-ul"></ul>
+        </div>
+        <hr />
+        <h1>User Repos</h1>
+        <div>
+            <ul id="user-repos-ul">
+            </ul>
+        </div>
+    </div>
+
     <script src="./logic.js"></script>
 </body>
+
 </html>

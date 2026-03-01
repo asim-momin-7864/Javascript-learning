@@ -460,6 +460,7 @@ function centralFunc() {
 
                 // start loading
                 toggleLoader(true);
+                    decideUIRenderor("success");
 
                 username = document.getElementById("searchbar").value;
 
@@ -488,6 +489,7 @@ function centralFunc() {
                 // decideUIRenderor();
             } finally {
                 toggleLoader(false) // at end efficently turn of loader , beacuse no matter , if we got error or result we are turning off
+                // decideUIRenderor("success")
             }
         });
 

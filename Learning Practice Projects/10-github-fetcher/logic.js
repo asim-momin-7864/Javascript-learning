@@ -1,4 +1,12 @@
 /*
+------------------------------------------------------------------------------------------------
+
+* ### About functions
+
+! MISTAKE FIXED: Removed global `userData`, `userRepos`, and `username`.
+* State should flow through functions as arguments and return values. 
+
+------------------------------------------------------------------------------------------------
 
 * ### Lesson Learned: Centralized Error Handling & The "Assembly Line" Concept
 
@@ -114,6 +122,57 @@ This acts as the centralized controller.
 
 
  */
+
+
+/*
+
+* Does the code match the diagram?
+    Intentionally, yes. Technically, no.
+    Your diagram shows that if an error happens in Fetch User or Fetch Repos, the flow stops and goes straight to the red Show Error box.
+    However, in your code, your errors are failing silently, meaning the execution flow keeps running even when the API breaks.
+
+* 2. The Critical Bug: The "Silent Failure"
+Look closely at your fetchUserProfile function:
+
+JavaScript
+            if (!responseJson.ok) {
+                if (responseJson.status === 404) {
+                    decideUIRenderor("404");
+                    console.error("User not found (404)");
+                    // throw new Error("User not found (404)"); <--- YOU COMMENTED THIS OUT!
+                } 
+            }
+            userData = await responseJson.json(); 
+
+
+* What happens here: 
+        If I search for a fake user ("asdfghjkl"), the API returns a 404. 
+        Your code correctly catches the !responseJson.ok and shows the 404 image. 
+        BUT, because you commented out the throw new Error, JavaScript says, "Okay, error handled, moving on!"
+
+        It immediately tries to execute userData = await responseJson.json();
+        (which breaks because the 404 response isn't the JSON you expect). 
+        Even worse, your centralFunc coordinator doesn't know an error happened! 
+        It moves on and tries to run await fetchUserRepos(), 
+        which makes a useless network request for a user that doesn't exist, and then tries to render the UI.
+
+* The Fix: You must throw the error so your central try/catch block can actually catch it and stop the execution sequence.
+
+* JavaScript
+            // Inside fetchUserProfile:
+            if (!responseJson.ok) {
+                if (responseJson.status === 404) {
+                    decideUIRenderor("404");
+                    throw new Error("404"); // THIS STOPS THE FUNCTION IMMEDIATELY
+                } else {
+                    decideUIRenderor("general");
+                    throw new Error("Server error");
+                }
+            }
+
+
+*/
+
 
 
 //* Gobal Vars

@@ -1,6 +1,6 @@
-# 🏗️ Project Plan: Github User Fetcher
+# Project Plan: Github User Fetcher
 
-> **Goal:** To learn about External APIs, data-fetching, async-operations, JSON response handling.
+The goal is to learn about async operations, external api's.
 
 ---
 
@@ -57,9 +57,6 @@
 
 ## 3. Data & API Contracts
 
-### Database Schema (Draft)
-* **Model 1:** `[Name]` -> Fields: `[id, string, boolean]`
-* **Model 2:** `[Name]` -> Fields: `[id, foreignKey, int]`
 
 ### API Endpoints
 * **Route:** `GET https://api.github.com/users/{username} `
